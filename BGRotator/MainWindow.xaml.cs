@@ -71,6 +71,13 @@ namespace BGRotator
 
         private void ChangeWallpaper()
         {
+            if (!Directory.Exists(Properties.Settings.Default.wallpaperDir))
+            {
+                MessageBox.Show("Directory for Wallpaper cannot be found:\n" + Properties.Settings.Default.wallpaperDir,
+                    "BGRotator: Directory not found", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             var files = Directory.GetFiles(Properties.Settings.Default.wallpaperDir, "*.*").Where(s => s.EndsWith(".jpg", StringComparison.OrdinalIgnoreCase) ||
                 s.EndsWith(".jpeg", StringComparison.OrdinalIgnoreCase) ||
                 s.EndsWith(".png", StringComparison.OrdinalIgnoreCase) ||
@@ -160,6 +167,13 @@ namespace BGRotator
 
         public void FavoriteWallpaper()
         {
+            if (!Directory.Exists(Properties.Settings.Default.favoritesDir))
+            {
+                MessageBox.Show("Directory for Favorites cannot be found:\n"+ Properties.Settings.Default.favoritesDir,
+                    "BGRotator: Directory not found", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            
             String newfile = Properties.Settings.Default.favoritesDir + "\\" + Path.GetFileName(currentWallpaper);
             if (Properties.Settings.Default.moveOrCopyOnFavorite == 0) // Move
                 File.Move(currentWallpaper, newfile);
@@ -172,6 +186,12 @@ namespace BGRotator
 
         public void TrashWallpaper()
         {
+            if (!Directory.Exists(Properties.Settings.Default.trashDir))
+            {
+                MessageBox.Show("Directory for Trash cannot be found:\n" + Properties.Settings.Default.trashDir,
+                    "BGRotator: Directory not found", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             String newfile = Properties.Settings.Default.trashDir + "\\" + Path.GetFileName(currentWallpaper);
 
             if (Properties.Settings.Default.moveOrCopyOnTrash == 0) // Move

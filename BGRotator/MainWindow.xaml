@@ -13,8 +13,15 @@
         <Button x:Name="buttonOK" Content="OK" HorizontalAlignment="Left" Margin="432,319,0,0" VerticalAlignment="Top" Width="75" IsDefault="True" Click="buttonOK_Click" TabIndex="17"/>
         <Button x:Name="buttonCancel" Content="Cancel" HorizontalAlignment="Left" Margin="315,319,0,0" VerticalAlignment="Top" Width="75" IsCancel="True" Click="buttonCancel_Click" TabIndex="16"/>
         <Label x:Name="labelWallpapers" Content="Display wallpapers from:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" TabIndex="1"/>
-        <TextBox x:Name="textBoxWallpaperDir" HorizontalAlignment="Left" Height="23" Margin="29,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="403"
-                 Text="{Binding wallpaperDir, Mode=TwoWay, Source={x:Static Properties:Settings.Default}, UpdateSourceTrigger=PropertyChanged}" TabIndex="2"/>
+        <TextBox x:Name="textBoxWallpaperDir" Style="{StaticResource textBoxInError}" HorizontalAlignment="Left" Height="23" Margin="29,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="403" TabIndex="2">
+            <TextBox.Text>
+                <Binding Path="wallpaperDir" Mode="TwoWay" Source="{x:Static Properties:Settings.Default}" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local:DirectoryExistsRule ValidatesOnTargetUpdated="True" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
         <Button x:Name="buttonBrowseWallpaperDir" Content="Browse..." HorizontalAlignment="Left" Margin="449,36,0,0" VerticalAlignment="Top" Width="75" Click="buttonBrowseWallpaperDir_Click" TabIndex="3"/>
         <Label x:Name="labelRotate" Content="Change wallpaper every" HorizontalAlignment="Left" Margin="272,271,0,0" VerticalAlignment="Top"/>
         <xctk:IntegerUpDown x:Name="updownRotate" FormatString="N0" Increment="1" Maximum="525600" HorizontalAlignment="Left" Margin="411,274,0,0" VerticalAlignment="Top" Minimum="1" Width="62" TabIndex="15"
@@ -25,13 +32,29 @@
         </xctk:IntegerUpDown>
         <Label x:Name="labelMinutes" Content="minutes" HorizontalAlignment="Left" Margin="476,272,0,0" VerticalAlignment="Top"/>
         <Label x:Name="labelFavorites" Content="favorites to:" HorizontalAlignment="Left" Margin="86,68,0,0" VerticalAlignment="Top" TabIndex="4"/>
-        <TextBox x:Name="textBoxFavoritesDir" HorizontalAlignment="Left" Height="23" Margin="29,98,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="403"
-                 Text="{Binding favoritesDir, Mode=TwoWay, Source={x:Static Properties:Settings.Default}, UpdateSourceTrigger=PropertyChanged}" TabIndex="5"/>
+        <TextBox x:Name="textBoxFavoritesDir" Style="{StaticResource textBoxInError}" HorizontalAlignment="Left" Height="23" Margin="29,98,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="403" TabIndex="5">
+        <TextBox.Text>
+            <Binding Path="favoritesDir" Mode="TwoWay" Source="{x:Static Properties:Settings.Default}" UpdateSourceTrigger="PropertyChanged">
+                <Binding.ValidationRules>
+                    <local:DirectoryExistsRule ValidatesOnTargetUpdated="True" />
+                </Binding.ValidationRules>
+            </Binding>
+        </TextBox.Text>
+        </TextBox>
+
         <Button x:Name="buttonBrowseFavoritesDir" Content="Browse..." HorizontalAlignment="Left" Margin="449,101,0,0" VerticalAlignment="Top" Width="75" Click="buttonBrowseFavoritesDir_Click" TabIndex="6"/>
         <Label x:Name="labelTrash" Content="trash to:" HorizontalAlignment="Left" Margin="85,127,0,0" VerticalAlignment="Top" TabIndex="7"/>
         <Button x:Name="buttonBrowseTrashDir" Content="Browse..." HorizontalAlignment="Left" Margin="449,156,0,0" VerticalAlignment="Top" Width="75" Click="buttonBrowseTrashDir_Click" TabIndex="9"/>
-        <TextBox x:Name="textBoxTrashDir" HorizontalAlignment="Left" Height="23" Margin="29,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="403"
-                 Text="{Binding trashDir, Mode=TwoWay, Source={x:Static Properties:Settings.Default}, UpdateSourceTrigger=PropertyChanged}" TabIndex="8"/>
+        <TextBox x:Name="textBoxTrashDir" Style="{StaticResource textBoxInError}" HorizontalAlignment="Left" Height="23" Margin="29,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="403" TabIndex="8">
+            <TextBox.Text>
+                <Binding Path="trashDir" Mode="TwoWay" Source="{x:Static Properties:Settings.Default}" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <local:DirectoryExistsRule ValidatesOnTargetUpdated="True" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
         <Label x:Name="labelNextHokey" Content="Next" HorizontalAlignment="Left" Margin="16,219,0,0" VerticalAlignment="Top" Height="28" Width="36"/>
         <Label x:Name="labelFavoriteHotkey" Content="Favorite" HorizontalAlignment="Left" Margin="16,252,0,0" VerticalAlignment="Top"/>
         <Label x:Name="labelTrashHotkey" Content="Trash" HorizontalAlignment="Left" Margin="16,285,0,0" VerticalAlignment="Top"/>
