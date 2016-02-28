@@ -8,3 +8,4 @@ At the core, it is a simple program to rotate background images at an interval s
 
 Hotkeys are supported for changing to next image, favorting, and trashing.
 
+<img src="http://i.imgur.com/rEpiwsj.png" />
