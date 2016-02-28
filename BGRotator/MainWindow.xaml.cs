@@ -144,7 +144,7 @@ namespace BGRotator
         {
             SaveSettings();
             resetTimer();
-            //ChangeWallpaper();
+            ChangeWallpaper();
 
             Hotkey.Initialize(this, new Hotkey[] { nextHotkey, favoriteHotkey, trashHotkey });
             Hotkey.Enable();
@@ -161,7 +161,10 @@ namespace BGRotator
         public void FavoriteWallpaper()
         {
             String newfile = Properties.Settings.Default.favoritesDir + "\\" + Path.GetFileName(currentWallpaper);
-            File.Copy(currentWallpaper, newfile);
+            if (Properties.Settings.Default.moveOrCopyOnFavorite == 0) // Move
+                File.Move(currentWallpaper, newfile);
+            else
+                File.Copy(currentWallpaper, newfile);
 
             if (Properties.Settings.Default.nextOnFavorite)
                 NextWallpaper();
@@ -170,7 +173,11 @@ namespace BGRotator
         public void TrashWallpaper()
         {
             String newfile = Properties.Settings.Default.trashDir + "\\" + Path.GetFileName(currentWallpaper);
-            File.Move(currentWallpaper, newfile);
+
+            if (Properties.Settings.Default.moveOrCopyOnTrash == 0) // Move
+                File.Move(currentWallpaper, newfile);
+            else
+                File.Copy(currentWallpaper, newfile);
 
             if (Properties.Settings.Default.nextOnTrash)
                 NextWallpaper();

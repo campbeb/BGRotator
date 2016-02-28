@@ -12,10 +12,10 @@
         <GroupBox x:Name="groupBox" Header="Hotkeys" HorizontalAlignment="Left" Height="132" Margin="10,196,0,0" VerticalAlignment="Top" Width="248"/>
         <Button x:Name="buttonOK" Content="OK" HorizontalAlignment="Left" Margin="432,319,0,0" VerticalAlignment="Top" Width="75" IsDefault="True" Click="buttonOK_Click" TabIndex="17"/>
         <Button x:Name="buttonCancel" Content="Cancel" HorizontalAlignment="Left" Margin="315,319,0,0" VerticalAlignment="Top" Width="75" IsCancel="True" Click="buttonCancel_Click" TabIndex="16"/>
-        <Label x:Name="labelWallpapers" Content="Display wallpapers from:" HorizontalAlignment="Left" Margin="10,19,0,0" VerticalAlignment="Top" TabIndex="1"/>
-        <TextBox x:Name="textBoxWallpaperDir" HorizontalAlignment="Left" Height="23" Margin="29,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="403"
+        <Label x:Name="labelWallpapers" Content="Display wallpapers from:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" TabIndex="1"/>
+        <TextBox x:Name="textBoxWallpaperDir" HorizontalAlignment="Left" Height="23" Margin="29,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="403"
                  Text="{Binding wallpaperDir, Mode=TwoWay, Source={x:Static Properties:Settings.Default}, UpdateSourceTrigger=PropertyChanged}" TabIndex="2"/>
-        <Button x:Name="buttonBrowseWallpaperDir" Content="Browse..." HorizontalAlignment="Left" Margin="449,45,0,0" VerticalAlignment="Top" Width="75" Click="buttonBrowseWallpaperDir_Click" TabIndex="3"/>
+        <Button x:Name="buttonBrowseWallpaperDir" Content="Browse..." HorizontalAlignment="Left" Margin="449,36,0,0" VerticalAlignment="Top" Width="75" Click="buttonBrowseWallpaperDir_Click" TabIndex="3"/>
         <Label x:Name="labelRotate" Content="Change wallpaper every" HorizontalAlignment="Left" Margin="272,271,0,0" VerticalAlignment="Top"/>
         <xctk:IntegerUpDown x:Name="updownRotate" FormatString="N0" Increment="1" Maximum="525600" HorizontalAlignment="Left" Margin="411,274,0,0" VerticalAlignment="Top" Minimum="1" Width="62" TabIndex="15"
                             Value="{Binding rotateInterval, Mode=TwoWay, Source={x:Static Properties:Settings.Default}, UpdateSourceTrigger=PropertyChanged}">
@@ -24,11 +24,11 @@
             </xctk:IntegerUpDown.BindingGroup>
         </xctk:IntegerUpDown>
         <Label x:Name="labelMinutes" Content="minutes" HorizontalAlignment="Left" Margin="476,272,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="labelFavorites" Content="Copy favorites to:" HorizontalAlignment="Left" Margin="10,73,0,0" VerticalAlignment="Top" TabIndex="4"/>
-        <TextBox x:Name="textBoxFavoritesDir" HorizontalAlignment="Left" Height="23" Margin="29,99,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="403"
+        <Label x:Name="labelFavorites" Content="favorites to:" HorizontalAlignment="Left" Margin="86,68,0,0" VerticalAlignment="Top" TabIndex="4"/>
+        <TextBox x:Name="textBoxFavoritesDir" HorizontalAlignment="Left" Height="23" Margin="29,98,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="403"
                  Text="{Binding favoritesDir, Mode=TwoWay, Source={x:Static Properties:Settings.Default}, UpdateSourceTrigger=PropertyChanged}" TabIndex="5"/>
-        <Button x:Name="buttonBrowseFavoritesDir" Content="Browse..." HorizontalAlignment="Left" Margin="449,102,0,0" VerticalAlignment="Top" Width="75" Click="buttonBrowseFavoritesDir_Click" TabIndex="6"/>
-        <Label x:Name="labelTrash" Content="Move trash to:" HorizontalAlignment="Left" Margin="10,127,0,0" VerticalAlignment="Top" TabIndex="7"/>
+        <Button x:Name="buttonBrowseFavoritesDir" Content="Browse..." HorizontalAlignment="Left" Margin="449,101,0,0" VerticalAlignment="Top" Width="75" Click="buttonBrowseFavoritesDir_Click" TabIndex="6"/>
+        <Label x:Name="labelTrash" Content="trash to:" HorizontalAlignment="Left" Margin="85,127,0,0" VerticalAlignment="Top" TabIndex="7"/>
         <Button x:Name="buttonBrowseTrashDir" Content="Browse..." HorizontalAlignment="Left" Margin="449,156,0,0" VerticalAlignment="Top" Width="75" Click="buttonBrowseTrashDir_Click" TabIndex="9"/>
         <TextBox x:Name="textBoxTrashDir" HorizontalAlignment="Left" Height="23" Margin="29,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="403"
                  Text="{Binding trashDir, Mode=TwoWay, Source={x:Static Properties:Settings.Default}, UpdateSourceTrigger=PropertyChanged}" TabIndex="8"/>
@@ -43,6 +43,14 @@
         <Label x:Name="labelTrashHotkeyKeys" Content="hotkeys" HorizontalAlignment="Left" Margin="120,285,0,0" VerticalAlignment="Top" BorderBrush="Black" BorderThickness="1"/>
         <CheckBox x:Name="checkBoxNextOnFavorite" Content="Change wallpaper after Favorite" HorizontalAlignment="Left" Margin="294,210,0,0" VerticalAlignment="Top" IsChecked="{Binding nextOnFavorite, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}" TabIndex="13"/>
         <CheckBox x:Name="checkBoxNextOnTrash" Content="Change wallpaper after Trash" HorizontalAlignment="Left" Margin="294,239,0,0" VerticalAlignment="Top"  IsChecked="{Binding nextOnTrash, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}" TabIndex="14"/>
+        <ComboBox x:Name="comboBoxFavorite" HorizontalAlignment="Left" Margin="16,70,0,0" VerticalAlignment="Top" Width="67" SelectedIndex="{Binding moveOrCopyOnFavorite, Mode=TwoWay, Source={x:Static Properties:Settings.Default}, UpdateSourceTrigger=PropertyChanged}">
+            <ComboBoxItem Content="Move"/>
+            <ComboBoxItem Content="Copy"/>
+        </ComboBox>
+        <ComboBox x:Name="comboBoxTrash" HorizontalAlignment="Left" Margin="16,128,0,0" VerticalAlignment="Top" Width="67" SelectedIndex="{Binding moveOrCopyOnTrash, Mode=TwoWay, Source={x:Static Properties:Settings.Default}, UpdateSourceTrigger=PropertyChanged}">
+            <ComboBoxItem Content="Move"/>
+            <ComboBoxItem Content="Copy"/>
+        </ComboBox>
 
     </Grid>
 </Window>

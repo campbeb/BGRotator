@@ -130,5 +130,29 @@ namespace BGRotator.Properties {
                 this["nextOnTrash"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int moveOrCopyOnFavorite {
+            get {
+                return ((int)(this["moveOrCopyOnFavorite"]));
+            }
+            set {
+                this["moveOrCopyOnFavorite"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int moveOrCopyOnTrash {
+            get {
+                return ((int)(this["moveOrCopyOnTrash"]));
+            }
+            set {
+                this["moveOrCopyOnTrash"] = value;
+            }
+        }
     }
 }
