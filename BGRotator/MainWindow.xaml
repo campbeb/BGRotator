@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:BGRotator"
         xmlns:Properties="clr-namespace:BGRotator.Properties" x:Class="BGRotator.MainWindow"
         mc:Ignorable="d"
-        Title="BGRotator" Height="383" Width="550" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Activated="Window_Activated" Loaded="Window_Loaded">
+        Title="BGRotator" Height="383" Width="550" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Activated="Window_Activated" Loaded="Window_Loaded" Icon="BGRotator.ico">
     <Grid>
         <GroupBox x:Name="groupBox" Header="Hotkeys" HorizontalAlignment="Left" Height="132" Margin="10,196,0,0" VerticalAlignment="Top" Width="248"/>
         <Button x:Name="buttonOK" Content="OK" HorizontalAlignment="Left" Margin="432,319,0,0" VerticalAlignment="Top" Width="75" IsDefault="True" Click="buttonOK_Click" TabIndex="17"/>
