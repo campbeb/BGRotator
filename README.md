@@ -8,4 +8,5 @@ At the core, it is a simple program to rotate background images at an interval s
 
 Hotkeys are supported for changing to next image, favorting, and trashing.
 
-<img src="http://i.imgur.com/rEpiwsj.png" />
+<img src="https://raw.githubusercontent.com/campbeb/BGRotator/d5cf88dd6df8a11920b028a79e684d90f377888c/BGRotator/Screenshot.png" />
+
