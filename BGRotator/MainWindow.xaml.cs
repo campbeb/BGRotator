@@ -40,10 +40,9 @@ namespace BGRotator
             trashHotkey = Hotkey.Deserialize(Properties.Settings.Default.trashHotkey);
 
             // TODO: Better label if no hotkey defined
-            // TODO: Bind converter to do this automatically
-            labelNextHotkeyKeys.Content = KeyToString(nextHotkey);
-            labelFavoriteHotkeyKeys.Content = KeyToString(favoriteHotkey);
-            labelTrashHotkeyKeys.Content = KeyToString(trashHotkey);
+            labelNextHotkeyKeys.Content = nextHotkey.toString();
+            labelFavoriteHotkeyKeys.Content = favoriteHotkey.toString();
+            labelTrashHotkeyKeys.Content = trashHotkey.toString();
 
             resetTimer();
             rand = new Random();
@@ -246,35 +245,27 @@ namespace BGRotator
 
             if (_hotkey.WinKey == Key.Escape)
             {
-                _hotkey = null;
+                _hotkey = new Hotkey();
             }
 
             switch (_action)
             {
                 case Hotkey.KeyAction.Next:
                     nextHotkey = _hotkey;
-                    labelNextHotkeyKeys.Content = KeyToString(_hotkey);
+                    labelNextHotkeyKeys.Content = _hotkey.toString();
                     break;
 
                 case Hotkey.KeyAction.Favorite:
                     favoriteHotkey = _hotkey;
-                    labelFavoriteHotkeyKeys.Content = KeyToString(_hotkey);
+                    labelFavoriteHotkeyKeys.Content = _hotkey.toString();
                     break;
 
                 case Hotkey.KeyAction.Trash:
                     trashHotkey = _hotkey;
-                    labelTrashHotkeyKeys.Content = KeyToString(_hotkey);
+                    labelTrashHotkeyKeys.Content = _hotkey.toString();
                     break;
             }
 
-        }
-
-        private String KeyToString(Hotkey hk)
-        {
-            return (hk.AltMod ? "Alt + " : "") +
-                 (hk.CtrlMod ? "Ctrl + " : "") +
-                 (hk.ShiftMod ? "Shift + " : "") +
-                 new KeyConverter().ConvertToString(hk.WinKey);
         }
 
         public HwndSource HwndSource

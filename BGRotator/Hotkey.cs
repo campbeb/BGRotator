@@ -89,6 +89,14 @@ namespace BGRotator
                 bool.Parse(items[5]));
         }
 
+        public string toString()
+        {
+            return (this.AltMod ? "Alt + " : "") +
+                 (this.CtrlMod ? "Ctrl + " : "") +
+                 (this.ShiftMod ? "Shift + " : "") +
+                 new KeyConverter().ConvertToString(this.WinKey);
+        }
+
         public static void Initialize(MainWindow window, Hotkey[] settings)
         {
             if (IsHooked || settings == null || settings.Length == 0)

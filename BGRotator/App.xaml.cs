@@ -16,12 +16,19 @@ namespace BGRotator
     {
         private TaskbarIcon TrayIcon;
 
-        protected async override void OnStartup(StartupEventArgs e)
+        protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
 
             // TRAY ICON
             TrayIcon = (TaskbarIcon)FindResource("TrayIcon");
+
+            if (BGRotator.Properties.Settings.Default.settingsUpgradeRequired)
+            {
+                BGRotator.Properties.Settings.Default.Upgrade();
+                BGRotator.Properties.Settings.Default.settingsUpgradeRequired = false;
+                BGRotator.Properties.Settings.Default.Save();
+            }
         }
 
         public MainWindow GetMainWindow
