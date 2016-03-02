@@ -1,79 +1,286 @@
 ﻿<Window
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-        xmlns:local="clr-namespace:BGRotator"
-        xmlns:Properties="clr-namespace:BGRotator.Properties" x:Class="BGRotator.MainWindow"
-        mc:Ignorable="d"
-        Title="BGRotator" Height="383" Width="550" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Activated="Window_Activated" Loaded="Window_Loaded" Icon="BGRotator.ico">
+    x:Class="BGRotator.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:BGRotator"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Properties="clr-namespace:BGRotator.Properties"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+
+    Width="550"
+    Height="383"
+    Activated="Window_Activated"
+    Icon="BGRotator.ico"
+    Loaded="Window_Loaded"
+    ResizeMode="CanMinimize"
+    Title="BGRotator"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
     <Grid>
-        <GroupBox x:Name="groupBox" Header="Hotkeys" HorizontalAlignment="Left" Height="132" Margin="10,196,0,0" VerticalAlignment="Top" Width="248"/>
-        <Button x:Name="buttonOK" Content="OK" HorizontalAlignment="Left" Margin="432,319,0,0" VerticalAlignment="Top" Width="75" IsDefault="True" Click="buttonOK_Click" TabIndex="17"/>
-        <Button x:Name="buttonCancel" Content="Cancel" HorizontalAlignment="Left" Margin="315,319,0,0" VerticalAlignment="Top" Width="75" IsCancel="True" Click="buttonCancel_Click" TabIndex="16"/>
-        <Label x:Name="labelWallpapers" Content="Display wallpapers from:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" TabIndex="1"/>
-        <TextBox x:Name="textBoxWallpaperDir" Style="{StaticResource textBoxInError}" HorizontalAlignment="Left" Height="23" Margin="29,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="403" TabIndex="2" ToolTip="Path to directory that contains wallpapers to display">
+        <GroupBox
+            x:Name="groupBox" Width="248" Height="132"
+            HorizontalAlignment="Left"
+            Margin="10,196,0,0"
+            VerticalAlignment="Top"
+            Header="Hotkeys"/>
+        <Button
+            x:Name="buttonOK" Width="75"
+            HorizontalAlignment="Left"
+            Margin="432,319,0,0"
+            VerticalAlignment="Top"
+            Click="buttonOK_Click"
+            Content="OK"
+            IsDefault="True"
+            TabIndex="17"/>
+        <Button
+            x:Name="buttonCancel" Width="75"
+            HorizontalAlignment="Left"
+            Margin="315,319,0,0"
+            VerticalAlignment="Top"
+            Click="buttonCancel_Click"
+            Content="Cancel"
+            IsCancel="True"
+            TabIndex="16"/>
+        <Label
+            x:Name="labelWallpapers"
+            HorizontalAlignment="Left"
+            Margin="10,10,0,0"
+            VerticalAlignment="Top"
+            Content="Display wallpapers from:"
+            TabIndex="1"/>
+        <TextBox
+            x:Name="textBoxWallpaperDir" Width="403" Height="23"
+            HorizontalAlignment="Left"
+            Margin="29,36,0,0"
+            VerticalAlignment="Top"
+            Style="{StaticResource textBoxInError}"
+            TabIndex="2"
+            TextWrapping="Wrap"
+            ToolTip="Path to directory that contains wallpapers to display">
             <TextBox.Text>
-                <Binding Path="wallpaperDir" Mode="TwoWay" Source="{x:Static Properties:Settings.Default}" UpdateSourceTrigger="PropertyChanged">
+                <Binding
+                    Mode="TwoWay"
+                    Path="wallpaperDir"
+                    Source="{x:Static Properties:Settings.Default}"
+                    UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
-                        <local:DirectoryExistsRule ValidatesOnTargetUpdated="True" />
+                        <local:DirectoryExistsRule ValidatesOnTargetUpdated="True"/>
                     </Binding.ValidationRules>
                 </Binding>
             </TextBox.Text>
         </TextBox>
-        <Button x:Name="buttonBrowseWallpaperDir" Content="Browse..." HorizontalAlignment="Left" Margin="449,36,0,0" VerticalAlignment="Top" Width="75" Click="buttonBrowseWallpaperDir_Click" TabIndex="3"/>
-        <Label x:Name="labelRotate" Content="Change wallpaper every" HorizontalAlignment="Left" Margin="272,271,0,0" VerticalAlignment="Top"/>
-        <xctk:IntegerUpDown x:Name="updownRotate" FormatString="N0" Increment="1" Maximum="525600" HorizontalAlignment="Left" Margin="411,274,0,0" VerticalAlignment="Top" Minimum="1" Width="62" TabIndex="15"
-                            Value="{Binding rotateInterval, Mode=TwoWay, Source={x:Static Properties:Settings.Default}, UpdateSourceTrigger=PropertyChanged}">
+        <Button
+            x:Name="buttonBrowseWallpaperDir" Width="75"
+            HorizontalAlignment="Left"
+            Margin="449,36,0,0"
+            VerticalAlignment="Top"
+            Click="buttonBrowseWallpaperDir_Click"
+            Content="Browse..."
+            TabIndex="3"/>
+        <Label
+            x:Name="labelRotate"
+            HorizontalAlignment="Left"
+            Margin="272,271,0,0"
+            VerticalAlignment="Top"
+            Content="Change wallpaper every"/>
+        <xctk:IntegerUpDown
+            x:Name="updownRotate" Width="62"
+            HorizontalAlignment="Left"
+            Margin="411,274,0,0"
+            VerticalAlignment="Top"
+            FormatString="N0"
+            Increment="1"
+            Maximum="525600"
+            Minimum="1"
+            TabIndex="15"
+            Value="{Binding rotateInterval, Mode=TwoWay, Source={x:Static Properties:Settings.Default}, UpdateSourceTrigger=PropertyChanged}">
             <xctk:IntegerUpDown.BindingGroup>
                 <BindingGroup Name="rotateInterval"/>
             </xctk:IntegerUpDown.BindingGroup>
         </xctk:IntegerUpDown>
-        <Label x:Name="labelMinutes" Content="minutes" HorizontalAlignment="Left" Margin="476,272,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="labelFavorites" Content="favorites to:" HorizontalAlignment="Left" Margin="86,68,0,0" VerticalAlignment="Top" TabIndex="4"/>
-        <TextBox x:Name="textBoxFavoritesDir" Style="{StaticResource textBoxInError}" HorizontalAlignment="Left" Height="23" Margin="29,98,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="403" TabIndex="5" ToolTip="Path to directory where favorites will be moved or copied">
+        <Label
+            x:Name="labelMinutes"
+            HorizontalAlignment="Left"
+            Margin="476,272,0,0"
+            VerticalAlignment="Top"
+            Content="minutes"/>
+        <Label
+            x:Name="labelFavorites"
+            HorizontalAlignment="Left"
+            Margin="86,68,0,0"
+            VerticalAlignment="Top"
+            Content="favorites to:"
+            TabIndex="4"/>
+        <TextBox
+            x:Name="textBoxFavoritesDir" Width="403" Height="23"
+            HorizontalAlignment="Left"
+            Margin="29,98,0,0"
+            VerticalAlignment="Top"
+            Style="{StaticResource textBoxInError}"
+            TabIndex="5"
+            TextWrapping="Wrap"
+            ToolTip="Path to directory where favorites will be moved or copied">
             <TextBox.Text>
-                <Binding Path="favoritesDir" Mode="TwoWay" Source="{x:Static Properties:Settings.Default}" UpdateSourceTrigger="PropertyChanged">
+                <Binding
+                    Mode="TwoWay"
+                    Path="favoritesDir"
+                    Source="{x:Static Properties:Settings.Default}"
+                    UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
-                        <local:DirectoryExistsRule ValidatesOnTargetUpdated="True" />
+                        <local:DirectoryExistsRule ValidatesOnTargetUpdated="True"/>
                     </Binding.ValidationRules>
                 </Binding>
             </TextBox.Text>
         </TextBox>
-
-        <Button x:Name="buttonBrowseFavoritesDir" Content="Browse..." HorizontalAlignment="Left" Margin="449,101,0,0" VerticalAlignment="Top" Width="75" Click="buttonBrowseFavoritesDir_Click" TabIndex="6"/>
-        <Label x:Name="labelTrash" Content="trash to:" HorizontalAlignment="Left" Margin="85,127,0,0" VerticalAlignment="Top" TabIndex="7"/>
-        <Button x:Name="buttonBrowseTrashDir" Content="Browse..." HorizontalAlignment="Left" Margin="449,156,0,0" VerticalAlignment="Top" Width="75" Click="buttonBrowseTrashDir_Click" TabIndex="9"/>
-        <TextBox x:Name="textBoxTrashDir" Style="{StaticResource textBoxInError}" HorizontalAlignment="Left" Height="23" Margin="29,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="403" TabIndex="8" ToolTip="Path to directory where trash will be moved or copied">
+        <Button
+            x:Name="buttonBrowseFavoritesDir" Width="75"
+            HorizontalAlignment="Left"
+            Margin="449,101,0,0"
+            VerticalAlignment="Top"
+            Click="buttonBrowseFavoritesDir_Click"
+            Content="Browse..."
+            TabIndex="6"/>
+        <Label
+            x:Name="labelTrash"
+            HorizontalAlignment="Left"
+            Margin="85,127,0,0"
+            VerticalAlignment="Top"
+            Content="trash to:"
+            TabIndex="7"/>
+        <Button
+            x:Name="buttonBrowseTrashDir" Width="75"
+            HorizontalAlignment="Left"
+            Margin="449,156,0,0"
+            VerticalAlignment="Top"
+            Click="buttonBrowseTrashDir_Click"
+            Content="Browse..."
+            TabIndex="9"/>
+        <TextBox
+            x:Name="textBoxTrashDir" Width="403" Height="23"
+            HorizontalAlignment="Left"
+            Margin="29,153,0,0"
+            VerticalAlignment="Top"
+            Style="{StaticResource textBoxInError}"
+            TabIndex="8"
+            TextWrapping="Wrap"
+            ToolTip="Path to directory where trash will be moved or copied">
             <TextBox.Text>
-                <Binding Path="trashDir" Mode="TwoWay" Source="{x:Static Properties:Settings.Default}" UpdateSourceTrigger="PropertyChanged">
+                <Binding
+                    Mode="TwoWay"
+                    Path="trashDir"
+                    Source="{x:Static Properties:Settings.Default}"
+                    UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
-                        <local:DirectoryExistsRule ValidatesOnTargetUpdated="True" />
+                        <local:DirectoryExistsRule ValidatesOnTargetUpdated="True"/>
                     </Binding.ValidationRules>
                 </Binding>
             </TextBox.Text>
         </TextBox>
-
-        <Label x:Name="labelNextHokey" Content="Next" HorizontalAlignment="Left" Margin="16,219,0,0" VerticalAlignment="Top" Height="28" Width="36"/>
-        <Label x:Name="labelFavoriteHotkey" Content="Favorite" HorizontalAlignment="Left" Margin="16,252,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="labelTrashHotkey" Content="Trash" HorizontalAlignment="Left" Margin="16,285,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="buttonNextHotkey" Content="Set" HorizontalAlignment="Left" Margin="74,222,0,0" VerticalAlignment="Top" Width="36" Click="buttonNextHotkey_Click" TabIndex="10" ToolTip="Click to set hotkey for Next Wallpaper"/>
-        <Button x:Name="buttonFavoriteHotkey" Content="Set" HorizontalAlignment="Left" Margin="74,255,0,0" VerticalAlignment="Top" Width="36" Click="buttonFavoriteHotkey_Click" TabIndex="11" ToolTip="Click to set hotkey for Favorite Wallpaper"/>
-        <Button x:Name="buttonTrashHotkey" Content="Set" HorizontalAlignment="Left" Margin="74,288,0,0" VerticalAlignment="Top" Width="36" Click="buttonTrashHotkey_Click" TabIndex="12" ToolTip="Click to set hotkey for Trash Wallpaper"/>
-        <Label x:Name="labelNextHotkeyKeys" Content="hotkeys" HorizontalAlignment="Left" Margin="120,222,0,0" VerticalAlignment="Top" BorderBrush="Black" BorderThickness="1"/>
-        <Label x:Name="labelFavoriteHotkeyKeys" Content="hotkeys" HorizontalAlignment="Left" Margin="120,252,0,0" VerticalAlignment="Top" BorderBrush="Black" BorderThickness="1"/>
-        <Label x:Name="labelTrashHotkeyKeys" Content="hotkeys" HorizontalAlignment="Left" Margin="120,285,0,0" VerticalAlignment="Top" BorderBrush="Black" BorderThickness="1"/>
-        <CheckBox x:Name="checkBoxNextOnFavorite" Content="Change wallpaper after Favorite" HorizontalAlignment="Left" Margin="294,210,0,0" VerticalAlignment="Top" IsChecked="{Binding nextOnFavorite, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}" TabIndex="13"/>
-        <CheckBox x:Name="checkBoxNextOnTrash" Content="Change wallpaper after Trash" HorizontalAlignment="Left" Margin="294,239,0,0" VerticalAlignment="Top"  IsChecked="{Binding nextOnTrash, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}" TabIndex="14"/>
-        <ComboBox x:Name="comboBoxFavorite" HorizontalAlignment="Left" Margin="16,70,0,0" VerticalAlignment="Top" Width="67" SelectedIndex="{Binding moveOrCopyOnFavorite, Mode=TwoWay, Source={x:Static Properties:Settings.Default}, UpdateSourceTrigger=PropertyChanged}" ToolTip="Select whether to Move or Copy favorites">
+        <Label
+            x:Name="labelNextHokey" Width="36" Height="28"
+            HorizontalAlignment="Left"
+            Margin="16,219,0,0"
+            VerticalAlignment="Top"
+            Content="Next"/>
+        <Label
+            x:Name="labelFavoriteHotkey"
+            HorizontalAlignment="Left"
+            Margin="16,252,0,0"
+            VerticalAlignment="Top"
+            Content="Favorite"/>
+        <Label
+            x:Name="labelTrashHotkey"
+            HorizontalAlignment="Left"
+            Margin="16,285,0,0"
+            VerticalAlignment="Top"
+            Content="Trash"/>
+        <Button
+            x:Name="buttonNextHotkey" Width="36"
+            HorizontalAlignment="Left"
+            Margin="74,222,0,0"
+            VerticalAlignment="Top"
+            Click="buttonNextHotkey_Click"
+            Content="Set"
+            TabIndex="10"
+            ToolTip="Click to set hotkey for Next Wallpaper"/>
+        <Button
+            x:Name="buttonFavoriteHotkey" Width="36"
+            HorizontalAlignment="Left"
+            Margin="74,255,0,0"
+            VerticalAlignment="Top"
+            Click="buttonFavoriteHotkey_Click"
+            Content="Set"
+            TabIndex="11"
+            ToolTip="Click to set hotkey for Favorite Wallpaper"/>
+        <Button
+            x:Name="buttonTrashHotkey" Width="36"
+            HorizontalAlignment="Left"
+            Margin="74,288,0,0"
+            VerticalAlignment="Top"
+            Click="buttonTrashHotkey_Click"
+            Content="Set"
+            TabIndex="12"
+            ToolTip="Click to set hotkey for Trash Wallpaper"/>
+        <Label
+            x:Name="labelNextHotkeyKeys"
+            HorizontalAlignment="Left"
+            Margin="120,222,0,0"
+            VerticalAlignment="Top"
+            BorderBrush="Black"
+            BorderThickness="1"
+            Content="hotkeys"/>
+        <Label
+            x:Name="labelFavoriteHotkeyKeys"
+            HorizontalAlignment="Left"
+            Margin="120,252,0,0"
+            VerticalAlignment="Top"
+            BorderBrush="Black"
+            BorderThickness="1"
+            Content="hotkeys"/>
+        <Label
+            x:Name="labelTrashHotkeyKeys"
+            HorizontalAlignment="Left"
+            Margin="120,285,0,0"
+            VerticalAlignment="Top"
+            BorderBrush="Black"
+            BorderThickness="1"
+            Content="hotkeys"/>
+        <CheckBox
+            x:Name="checkBoxNextOnFavorite"
+            HorizontalAlignment="Left"
+            Margin="294,210,0,0"
+            VerticalAlignment="Top"
+            Content="Change wallpaper after Favorite"
+            IsChecked="{Binding nextOnFavorite, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
+            TabIndex="13"/>
+        <CheckBox
+            x:Name="checkBoxNextOnTrash"
+            HorizontalAlignment="Left"
+            Margin="294,239,0,0"
+            VerticalAlignment="Top"
+            Content="Change wallpaper after Trash"
+            IsChecked="{Binding nextOnTrash, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
+            TabIndex="14"/>
+        <ComboBox
+            x:Name="comboBoxFavorite" Width="67"
+            HorizontalAlignment="Left"
+            Margin="16,70,0,0"
+            VerticalAlignment="Top"
+            SelectedIndex="{Binding moveOrCopyOnFavorite, Mode=TwoWay, Source={x:Static Properties:Settings.Default}, UpdateSourceTrigger=PropertyChanged}"
+            ToolTip="Select whether to Move or Copy favorites">
             <ComboBoxItem Content="Move"/>
             <ComboBoxItem Content="Copy"/>
         </ComboBox>
-        <ComboBox x:Name="comboBoxTrash" HorizontalAlignment="Left" Margin="16,128,0,0" VerticalAlignment="Top" Width="67" SelectedIndex="{Binding moveOrCopyOnTrash, Mode=TwoWay, Source={x:Static Properties:Settings.Default}, UpdateSourceTrigger=PropertyChanged}" ToolTip="Select whether to Move or Copy trash">
+        <ComboBox
+            x:Name="comboBoxTrash" Width="67"
+            HorizontalAlignment="Left"
+            Margin="16,128,0,0"
+            VerticalAlignment="Top"
+            SelectedIndex="{Binding moveOrCopyOnTrash, Mode=TwoWay, Source={x:Static Properties:Settings.Default}, UpdateSourceTrigger=PropertyChanged}"
+            ToolTip="Select whether to Move or Copy trash">
             <ComboBoxItem Content="Move"/>
             <ComboBoxItem Content="Copy"/>
         </ComboBox>
-
     </Grid>
 </Window>
