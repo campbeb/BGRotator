@@ -8,5 +8,7 @@ At the core, it is a simple program to rotate background images at an interval s
 
 Hotkeys are supported for changing to next image, favoriting, and trashing.
 
-<img src="http://i.imgur.com/Kv2tjE0.png" />
+Uses material design interface and has changeable colors!
+
+<img src="http://i.imgur.com/k3uw6hw.png" />
 
