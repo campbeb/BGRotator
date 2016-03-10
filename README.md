@@ -12,3 +12,6 @@ Uses material design interface and has changeable colors!
 
 <img src="http://i.imgur.com/k3uw6hw.png" />
 
+Animated to show the colors
+
+<img src="http://i.imgur.com/L82S9VN.gifv" />
