@@ -198,7 +198,7 @@ namespace BGRotator
             if (Properties.Settings.Default.moveOrCopyOnFavorite == 0) // Move
                 File.Move(currentWallpaper, newfile);
             else
-                File.Copy(currentWallpaper, newfile);
+                File.Copy(currentWallpaper, newfile, true);
 
             if (Properties.Settings.Default.nextOnFavorite)
                 NextWallpaper();
