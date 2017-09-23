@@ -61,9 +61,9 @@ namespace BGRotator
             trashHotkey = Hotkey.Deserialize(Properties.Settings.Default.trashHotkey);
 
             // TODO: Better label if no hotkey defined
-            labelNextHotkeyKeys.Content = nextHotkey.toString();
-            labelFavoriteHotkeyKeys.Content = favoriteHotkey.toString();
-            labelTrashHotkeyKeys.Content = trashHotkey.toString();
+            labelNextHotkeyKeys.Content = nextHotkey.ToString();
+            labelFavoriteHotkeyKeys.Content = favoriteHotkey.ToString();
+            labelTrashHotkeyKeys.Content = trashHotkey.ToString();
 
             ResetTimer();
             rand = new Random();
@@ -74,7 +74,7 @@ namespace BGRotator
             if (dispatcherTimer == null)
             {
                 dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
-                dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+                dispatcherTimer.Tick += new EventHandler(DispatcherTimer_Tick);
             } else
             {
                 dispatcherTimer.Stop();
@@ -84,7 +84,7 @@ namespace BGRotator
             dispatcherTimer.Start();
         }
 
-        private void dispatcherTimer_Tick(object sender, EventArgs e)
+        private void DispatcherTimer_Tick(object sender, EventArgs e)
         {
             ChangeWallpaper();
         }
@@ -196,7 +196,8 @@ namespace BGRotator
                 return;
             }
             
-            String newfile = Properties.Settings.Default.favoritesDir + "\\" + Path.GetFileName(currentWallpaper);
+            String newfile = Path.Combine(Properties.Settings.Default.favoritesDir, Path.GetFileName(currentWallpaper));
+
             if (Properties.Settings.Default.moveOrCopyOnFavorite == 0) // Move
                 File.Move(currentWallpaper, newfile);
             else
@@ -214,7 +215,8 @@ namespace BGRotator
                     "BGRotator: Directory not found", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            String newfile = Properties.Settings.Default.trashDir + "\\" + Path.GetFileName(currentWallpaper);
+
+            String newfile = Path.Combine(Properties.Settings.Default.trashDir, Path.GetFileName(currentWallpaper));
 
             if (Properties.Settings.Default.moveOrCopyOnTrash == 0) // Move
                 File.Move(currentWallpaper, newfile);
@@ -277,17 +279,17 @@ namespace BGRotator
             {
                 case Hotkey.KeyAction.Next:
                     nextHotkey = _hotkey;
-                    labelNextHotkeyKeys.Content = _hotkey.toString();
+                    labelNextHotkeyKeys.Content = _hotkey.ToString();
                     break;
 
                 case Hotkey.KeyAction.Favorite:
                     favoriteHotkey = _hotkey;
-                    labelFavoriteHotkeyKeys.Content = _hotkey.toString();
+                    labelFavoriteHotkeyKeys.Content = _hotkey.ToString();
                     break;
 
                 case Hotkey.KeyAction.Trash:
                     trashHotkey = _hotkey;
-                    labelTrashHotkeyKeys.Content = _hotkey.toString();
+                    labelTrashHotkeyKeys.Content = _hotkey.ToString();
                     break;
             }
 
@@ -346,17 +348,17 @@ namespace BGRotator
             e.Handled = true;
         }
 
-        private void primaryColorComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void PrimaryColorComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             new PaletteHelper().ReplacePrimaryColor((Swatch)primaryColorComboBox.SelectedItem);
         }
 
-        private void accentColorComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void AccentColorComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             new PaletteHelper().ReplaceAccentColor((Swatch)accentColorComboBox.SelectedItem);
         }
 
-        private void lightDarkToggleButton_Checked(object sender, RoutedEventArgs e)
+        private void LightDarkToggleButton_Checked(object sender, RoutedEventArgs e)
         {
             new PaletteHelper().SetLightDark(true);
         }

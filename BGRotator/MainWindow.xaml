@@ -22,16 +22,10 @@
     FontSize="13"
     mc:Ignorable="d">
     <Grid>
-        <GroupBox
-            x:Name="groupBox" Width="283" Height="161"
-            HorizontalAlignment="Left"
-            Margin="16,208,0,0"
-            VerticalAlignment="Top"
-            Header="Hotkeys" />
         <Button
             x:Name="buttonOK" Width="75"
             HorizontalAlignment="Left"
-            Margin="480,353,0,0"
+            Margin="480,363,0,0"
             VerticalAlignment="Top"
             Click="ButtonOK_Click"
             Content="OK"
@@ -40,7 +34,7 @@
         <Button
             x:Name="buttonCancel" Width="75"
             HorizontalAlignment="Left"
-            Margin="363,353,0,0"
+            Margin="363,363,0,0"
             VerticalAlignment="Top"
             Click="ButtonCancel_Click"
             Content="Cancel"
@@ -64,7 +58,7 @@
             Style="{StaticResource textBoxInError}"
             TabIndex="2"
             TextWrapping="Wrap"
-            ToolTip="Path to directory that contains wallpapers to display" Height="24">
+            ToolTip="Directory with wallpapers to display" Height="24">
             <TextBox.Text>
                 <Binding
                     Mode="TwoWay"
@@ -88,7 +82,7 @@
         <Label
             x:Name="labelRotate"
             HorizontalAlignment="Left"
-            Margin="304,299,0,0"
+            Margin="304,309,0,0"
             VerticalAlignment="Top"
             Content="Change wallpaper every" />
         <xctk:IntegerUpDown
@@ -96,7 +90,7 @@
             Background="{DynamicResource PrimaryHueLightBrush}"
             Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"
             HorizontalAlignment="Left"
-            Margin="456,302,0,0"
+            Margin="456,312,0,0"
             VerticalAlignment="Top"
             FormatString="N0"
             Increment="1"
@@ -111,13 +105,13 @@
         <Label
             x:Name="labelMinutes"
             HorizontalAlignment="Left"
-            Margin="521,300,0,0"
+            Margin="521,310,0,0"
             VerticalAlignment="Top"
             Content="minutes" />
         <Label
             x:Name="labelFavorites"
             HorizontalAlignment="Left"
-            Margin="92,70,0,0"
+            Margin="92,72,0,0"
             VerticalAlignment="Top"
             Content="favorites to:"
             TabIndex="4" />
@@ -126,13 +120,13 @@
             Background="{DynamicResource PrimaryHueLightBrush}"
             Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"
             HorizontalAlignment="Left"
-            Margin="35,99,0,0"
+            Margin="35,104,0,0"
             VerticalAlignment="Top"
             Padding="3"
             Style="{StaticResource textBoxInError}"
             TabIndex="5"
             TextWrapping="Wrap"
-            ToolTip="Path to directory where favorites will be moved or copied" Height="24">
+            ToolTip="Directory where favorites will be moved or copied" Height="24">
             <TextBox.Text>
                 <Binding
                     Mode="TwoWay"
@@ -148,7 +142,7 @@
         <Button
             x:Name="buttonBrowseFavoritesDir" Width="104"
             HorizontalAlignment="Left"
-            Margin="455,95,0,0"
+            Margin="455,100,0,0"
             VerticalAlignment="Top"
             Click="ButtonBrowseFavoritesDir_Click"
             Content="Browse..."
@@ -156,14 +150,14 @@
         <Label
             x:Name="labelTrash"
             HorizontalAlignment="Left"
-            Margin="91,130,0,0"
+            Margin="91,137,0,0"
             VerticalAlignment="Top"
             Content="trash to:"
             TabIndex="7" />
         <Button
             x:Name="buttonBrowseTrashDir" Width="104"
             HorizontalAlignment="Left"
-            Margin="455,155,0,0"
+            Margin="455,165,0,0"
             VerticalAlignment="Top"
             Click="ButtonBrowseTrashDir_Click"
             Content="Browse..."
@@ -173,13 +167,13 @@
             Background="{DynamicResource PrimaryHueLightBrush}"
             Foreground="{DynamicResource PrimaryHueLightForegroundBrush}"
             HorizontalAlignment="Left"
-            Margin="35,159,0,0"
+            Margin="35,169,0,0"
             VerticalAlignment="Top"
             Padding="3"
             Style="{StaticResource textBoxInError}"
             TabIndex="8"
             TextWrapping="Wrap"
-            ToolTip="Path to directory where trash will be moved or copied" Height="24">
+            ToolTip="Directory where trash will be moved or copied" Height="24">
             <TextBox.Text>
                 <Binding
                     Mode="TwoWay"
@@ -195,25 +189,25 @@
         <Label
             x:Name="labelNextHokey" Width="36" Height="28"
             HorizontalAlignment="Left"
-            Margin="22,237,0,0"
+            Margin="22,247,0,0"
             VerticalAlignment="Top"
             Content="Next" />
         <Label
             x:Name="labelFavoriteHotkey"
             HorizontalAlignment="Left"
-            Margin="22,282,0,0"
+            Margin="22,292,0,0"
             VerticalAlignment="Top"
             Content="Favorite" />
         <Label
             x:Name="labelTrashHotkey"
             HorizontalAlignment="Left"
-            Margin="22,328,0,0"
+            Margin="22,338,0,0"
             VerticalAlignment="Top"
             Content="Trash" />
         <Button
             x:Name="buttonNextHotkey" Width="64"
             HorizontalAlignment="Left"
-            Margin="80,234,0,0"
+            Margin="80,244,0,0"
             VerticalAlignment="Top"
             Click="ButtonNextHotkey_Click"
             Content="Set"
@@ -222,7 +216,7 @@
         <Button
             x:Name="buttonFavoriteHotkey" Width="64"
             HorizontalAlignment="Left"
-            Margin="80,278,0,0"
+            Margin="80,288,0,0"
             VerticalAlignment="Top"
             Click="ButtonFavoriteHotkey_Click"
             Content="Set"
@@ -231,7 +225,7 @@
         <Button
             x:Name="buttonTrashHotkey" Width="64"
             HorizontalAlignment="Left"
-            Margin="80,323,0,0"
+            Margin="80,333,0,0"
             VerticalAlignment="Top"
             Click="ButtonTrashHotkey_Click"
             Content="Set"
@@ -240,7 +234,7 @@
         <Label
             x:Name="labelNextHotkeyKeys"
             HorizontalAlignment="Left"
-            Margin="162,235,0,0"
+            Margin="162,245,0,0"
             VerticalAlignment="Top"
             BorderBrush="{DynamicResource PrimaryHueMidBrush}"
             BorderThickness="1"
@@ -248,7 +242,7 @@
         <Label
             x:Name="labelFavoriteHotkeyKeys"
             HorizontalAlignment="Left"
-            Margin="162,282,0,0"
+            Margin="162,292,0,0"
             VerticalAlignment="Top"
             BorderBrush="{DynamicResource PrimaryHueMidBrush}"
             BorderThickness="1"
@@ -256,7 +250,7 @@
         <Label
             x:Name="labelTrashHotkeyKeys"
             HorizontalAlignment="Left"
-            Margin="162,328,0,0"
+            Margin="162,338,0,0"
             VerticalAlignment="Top"
             BorderBrush="{DynamicResource PrimaryHueMidBrush}"
             BorderThickness="1"
@@ -264,7 +258,7 @@
         <CheckBox
             x:Name="checkBoxNextOnFavorite"
             HorizontalAlignment="Left"
-            Margin="335,238,0,0"
+            Margin="335,248,0,0"
             VerticalAlignment="Top"
             Content="Change wallpaper after Favorite"
             IsChecked="{Binding nextOnFavorite, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
@@ -272,7 +266,7 @@
         <CheckBox
             x:Name="checkBoxNextOnTrash"
             HorizontalAlignment="Left"
-            Margin="335,267,0,0"
+            Margin="335,277,0,0"
             VerticalAlignment="Top"
             Content="Change wallpaper after Trash"
             IsChecked="{Binding nextOnTrash, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
@@ -290,7 +284,7 @@
         <ComboBox
             x:Name="comboBoxTrash" Width="67"
             HorizontalAlignment="Left"
-            Margin="22,130,0,0"
+            Margin="22,135,0,0"
             VerticalAlignment="Top"
             SelectedIndex="{Binding moveOrCopyOnTrash, Mode=TwoWay, Source={x:Static Properties:Settings.Default}, UpdateSourceTrigger=PropertyChanged}"
             ToolTip="Select whether to Move or Copy trash">
@@ -299,7 +293,7 @@
         </ComboBox>
         <ComboBox x:Name="primaryColorComboBox"
                   HorizontalAlignment="Left"
-                  Margin="162,392,0,0"
+                  Margin="162,397,0,0"
                   VerticalAlignment="Top"
                   Width="120"
                   Style="{StaticResource MaterialDesignFloatingHintComboBox}"
@@ -307,7 +301,7 @@
                   SelectedValue="{Binding primaryColor, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
                   SelectedValuePath="Name"
                   materialDesign:HintAssist.Hint="(Primary Color)"
-                  SelectionChanged="primaryColorComboBox_SelectionChanged">
+                  SelectionChanged="PrimaryColorComboBox_SelectionChanged">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Name}">
@@ -324,11 +318,11 @@
                 </ItemsPanelTemplate>
             </ComboBox.ItemsPanel>
         </ComboBox>
-        <StackPanel Orientation="Horizontal" Margin="22,398,450,20">
+        <StackPanel Orientation="Horizontal" Margin="22,403,449.8,14.6">
             <TextBlock VerticalAlignment="Center">Light</TextBlock>
             <ToggleButton x:Name="lightDarkToggleButton" Margin="8 0 16 0"
                           IsChecked="{Binding useDarkBackground, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
-                          Checked="lightDarkToggleButton_Checked"
+                          Checked="LightDarkToggleButton_Checked"
                           Unchecked="LightDarkToggleButton_Unchecked" />
             <TextBlock VerticalAlignment="Center">Dark</TextBlock>
         </StackPanel>
@@ -342,7 +336,7 @@
         	SelectedValue="{Binding accentColor, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
         	SelectedValuePath="Name"
         	materialDesign:HintAssist.Hint="(Accent Color)"
-        	SelectionChanged="accentColorComboBox_SelectionChanged" Visibility="Hidden" >
+        	SelectionChanged="AccentColorComboBox_SelectionChanged" Visibility="Hidden" >
             <!--        	DisplayMemberPath="Name"-->
             <ComboBox.ItemTemplate>
                 <DataTemplate>
@@ -360,5 +354,19 @@
                 </ItemsPanelTemplate>
             </ComboBox.ItemsPanel>
         </ComboBox>
+        <Border 
+            BorderBrush="{DynamicResource MaterialDesignDivider}"
+            BorderThickness="3" 
+            HorizontalAlignment="Left" 
+            Height="154" 
+            Margin="16,228,0,0" 
+            VerticalAlignment="Top" 
+            Width="283"/>
+        <TextBlock 
+            HorizontalAlignment="Left"
+            Margin="18,211,0,0" 
+            VerticalAlignment="Top"
+            Style="{StaticResource MaterialDesignSubheadingTextBlock}" Text="Hotkeys"
+            />
     </Grid>
 </Window>

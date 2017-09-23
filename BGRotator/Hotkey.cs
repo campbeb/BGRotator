@@ -89,7 +89,7 @@ namespace BGRotator
                 bool.Parse(items[5]));
         }
 
-        public string toString()
+        override public string ToString()
         {
             return (this.AltMod ? "Alt + " : "") +
                  (this.CtrlMod ? "Ctrl + " : "") +
