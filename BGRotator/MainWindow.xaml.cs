@@ -11,6 +11,7 @@ using MaterialDesignThemes.Wpf;
 using MaterialDesignColors;
 using System.Collections.Generic;
 using System.Windows.Controls;
+using System.Threading.Tasks;
 
 namespace BGRotator
 {
@@ -20,7 +21,7 @@ namespace BGRotator
     public partial class MainWindow : Window
     {
         private System.Windows.Threading.DispatcherTimer dispatcherTimer = null;
-        private Random rand;
+        private static Random rand;
         private String currentWallpaper;
         private Hotkey nextHotkey;
         private Hotkey favoriteHotkey;
@@ -89,7 +90,7 @@ namespace BGRotator
             ChangeWallpaper();
         }
 
-        private void ChangeWallpaper()
+        private async void ChangeWallpaper()
         {
             if (!Directory.Exists(Properties.Settings.Default.wallpaperDir))
             {
@@ -98,14 +99,28 @@ namespace BGRotator
                 return;
             }
 
-            var files = Directory.GetFiles(Properties.Settings.Default.wallpaperDir, "*.*").Where(s => s.EndsWith(".jpg", StringComparison.OrdinalIgnoreCase) ||
-                s.EndsWith(".jpeg", StringComparison.OrdinalIgnoreCase) ||
-                s.EndsWith(".png", StringComparison.OrdinalIgnoreCase) ||
-                s.EndsWith(".gif", StringComparison.OrdinalIgnoreCase) ||
-                s.EndsWith(".bmp", StringComparison.OrdinalIgnoreCase)).ToList();
+            Task<string> task = GetNextWallpaper();
+            currentWallpaper = await task;
 
-            currentWallpaper = files[rand.Next(files.Count)];
             Wallpaper.Set(currentWallpaper, Wallpaper.Style.Stretched);
+        }
+
+        public static async Task<string> GetNextWallpaper()
+        {
+            string wallpaper = String.Empty;
+
+            await Task.Run(() =>
+            {
+                var files = Directory.GetFiles(Properties.Settings.Default.wallpaperDir, "*.*").Where(s => s.EndsWith(".jpg", StringComparison.OrdinalIgnoreCase) ||
+                    s.EndsWith(".jpeg", StringComparison.OrdinalIgnoreCase) ||
+                    s.EndsWith(".png", StringComparison.OrdinalIgnoreCase) ||
+                    s.EndsWith(".gif", StringComparison.OrdinalIgnoreCase) ||
+                    s.EndsWith(".bmp", StringComparison.OrdinalIgnoreCase)).ToList();
+
+                wallpaper = files[rand.Next(files.Count)];
+            });
+
+            return wallpaper;
         }
 
         private void SaveSettings()
