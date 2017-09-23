@@ -33,7 +33,7 @@
             HorizontalAlignment="Left"
             Margin="480,353,0,0"
             VerticalAlignment="Top"
-            Click="buttonOK_Click"
+            Click="ButtonOK_Click"
             Content="OK"
             IsDefault="True"
             TabIndex="17" />
@@ -42,7 +42,7 @@
             HorizontalAlignment="Left"
             Margin="363,353,0,0"
             VerticalAlignment="Top"
-            Click="buttonCancel_Click"
+            Click="ButtonCancel_Click"
             Content="Cancel"
             IsCancel="True"
             TabIndex="16" />
@@ -82,7 +82,7 @@
             HorizontalAlignment="Left"
             Margin="455,35,0,0"
             VerticalAlignment="Top"
-            Click="buttonBrowseWallpaperDir_Click"
+            Click="ButtonBrowseWallpaperDir_Click"
             Content="Browse..."
             TabIndex="3" />
         <Label
@@ -150,7 +150,7 @@
             HorizontalAlignment="Left"
             Margin="455,95,0,0"
             VerticalAlignment="Top"
-            Click="buttonBrowseFavoritesDir_Click"
+            Click="ButtonBrowseFavoritesDir_Click"
             Content="Browse..."
             TabIndex="6" />
         <Label
@@ -165,7 +165,7 @@
             HorizontalAlignment="Left"
             Margin="455,155,0,0"
             VerticalAlignment="Top"
-            Click="buttonBrowseTrashDir_Click"
+            Click="ButtonBrowseTrashDir_Click"
             Content="Browse..."
             TabIndex="9" />
         <TextBox
@@ -215,7 +215,7 @@
             HorizontalAlignment="Left"
             Margin="80,234,0,0"
             VerticalAlignment="Top"
-            Click="buttonNextHotkey_Click"
+            Click="ButtonNextHotkey_Click"
             Content="Set"
             TabIndex="10"
             ToolTip="Click to set hotkey for Next Wallpaper" />
@@ -224,7 +224,7 @@
             HorizontalAlignment="Left"
             Margin="80,278,0,0"
             VerticalAlignment="Top"
-            Click="buttonFavoriteHotkey_Click"
+            Click="ButtonFavoriteHotkey_Click"
             Content="Set"
             TabIndex="11"
             ToolTip="Click to set hotkey for Favorite Wallpaper" />
@@ -233,7 +233,7 @@
             HorizontalAlignment="Left"
             Margin="80,323,0,0"
             VerticalAlignment="Top"
-            Click="buttonTrashHotkey_Click"
+            Click="ButtonTrashHotkey_Click"
             Content="Set"
             TabIndex="12"
             ToolTip="Click to set hotkey for Trash Wallpaper" />
@@ -306,7 +306,7 @@
                   ItemsSource="{Binding Path=PrimaryColorSwatches}"
                   SelectedValue="{Binding primaryColor, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
                   SelectedValuePath="Name"
-                  materialDesign:TextFieldAssist.Hint="(Primary Color)"
+                  materialDesign:HintAssist.Hint="(Primary Color)"
                   SelectionChanged="primaryColorComboBox_SelectionChanged">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
@@ -329,7 +329,7 @@
             <ToggleButton x:Name="lightDarkToggleButton" Margin="8 0 16 0"
                           IsChecked="{Binding useDarkBackground, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
                           Checked="lightDarkToggleButton_Checked"
-                          Unchecked="lightDarkToggleButton_Unchecked" />
+                          Unchecked="LightDarkToggleButton_Unchecked" />
             <TextBlock VerticalAlignment="Center">Dark</TextBlock>
         </StackPanel>
         <ComboBox x:Name="accentColorComboBox"
@@ -341,7 +341,7 @@
         	ItemsSource="{Binding AccentColorSwatches}"
         	SelectedValue="{Binding accentColor, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
         	SelectedValuePath="Name"
-        	materialDesign:TextFieldAssist.Hint="(Accent Color)"
+        	materialDesign:HintAssist.Hint="(Accent Color)"
         	SelectionChanged="accentColorComboBox_SelectionChanged" Visibility="Hidden" >
             <!--        	DisplayMemberPath="Name"-->
             <ComboBox.ItemTemplate>

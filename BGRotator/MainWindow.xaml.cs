@@ -65,11 +65,11 @@ namespace BGRotator
             labelFavoriteHotkeyKeys.Content = favoriteHotkey.toString();
             labelTrashHotkeyKeys.Content = trashHotkey.toString();
 
-            resetTimer();
+            ResetTimer();
             rand = new Random();
         }
 
-        private void resetTimer()
+        private void ResetTimer()
         {
             if (dispatcherTimer == null)
             {
@@ -117,7 +117,7 @@ namespace BGRotator
             Properties.Settings.Default.Save();
         }
 
-        private void buttonBrowseWallpaperDir_Click(object sender, RoutedEventArgs e)
+        private void ButtonBrowseWallpaperDir_Click(object sender, RoutedEventArgs e)
         {
             String dir = textBoxWallpaperDir.Text;
             if (BrowseForDirectory(ref dir) == CommonFileDialogResult.Ok)
@@ -126,7 +126,7 @@ namespace BGRotator
             }
         }
 
-        private void buttonBrowseFavoritesDir_Click(object sender, RoutedEventArgs e)
+        private void ButtonBrowseFavoritesDir_Click(object sender, RoutedEventArgs e)
         {
             String dir = textBoxFavoritesDir.Text;
             if (BrowseForDirectory(ref dir) == CommonFileDialogResult.Ok)
@@ -135,7 +135,7 @@ namespace BGRotator
             }
         }
 
-        private void buttonBrowseTrashDir_Click(object sender, RoutedEventArgs e)
+        private void ButtonBrowseTrashDir_Click(object sender, RoutedEventArgs e)
         {
             String dir = textBoxTrashDir.Text;
             if (BrowseForDirectory(ref dir) == CommonFileDialogResult.Ok)
@@ -147,11 +147,13 @@ namespace BGRotator
 
         private CommonFileDialogResult BrowseForDirectory(ref String directory)
         {
-            var dialog = new CommonOpenFileDialog();
-            dialog.IsFolderPicker = true;
-            dialog.Multiselect = false;
-            dialog.Title = "Select Folder";
-            dialog.InitialDirectory = directory;
+            var dialog = new CommonOpenFileDialog
+            {
+                IsFolderPicker = true,
+                Multiselect = false,
+                Title = "Select Folder",
+                InitialDirectory = directory
+            };
 
             CommonFileDialogResult result = dialog.ShowDialog();
             if (result == CommonFileDialogResult.Ok)
@@ -167,10 +169,10 @@ namespace BGRotator
             Hotkey.Dispose();
         }
 
-        private void buttonOK_Click(object sender, RoutedEventArgs e)
+        private void ButtonOK_Click(object sender, RoutedEventArgs e)
         {
             SaveSettings();
-            resetTimer();
+            ResetTimer();
             ChangeWallpaper();
 
             Hotkey.Initialize(this, new Hotkey[] { nextHotkey, favoriteHotkey, trashHotkey });
@@ -179,7 +181,7 @@ namespace BGRotator
             this.Hide();
         }
 
-        private void buttonCancel_Click(object sender, RoutedEventArgs e)
+        private void ButtonCancel_Click(object sender, RoutedEventArgs e)
         {
             Properties.Settings.Default.Reload();
             this.Hide();
@@ -226,22 +228,22 @@ namespace BGRotator
         public void NextWallpaper()
         {
             ChangeWallpaper();
-            resetTimer();
+            ResetTimer();
         }
 
-        private void buttonNextHotkey_Click(object sender, RoutedEventArgs e)
+        private void ButtonNextHotkey_Click(object sender, RoutedEventArgs e)
         {
             BeginBind(Hotkey.KeyAction.Next);
             labelNextHotkeyKeys.Content = "Enter new hotkey...";
         }
 
-        private void buttonFavoriteHotkey_Click(object sender, RoutedEventArgs e)
+        private void ButtonFavoriteHotkey_Click(object sender, RoutedEventArgs e)
         {
             BeginBind(Hotkey.KeyAction.Favorite);
             labelFavoriteHotkeyKeys.Content = "Enter new hotkey...";
         }
 
-        private void buttonTrashHotkey_Click(object sender, RoutedEventArgs e)
+        private void ButtonTrashHotkey_Click(object sender, RoutedEventArgs e)
         {
             BeginBind(Hotkey.KeyAction.Trash);
             labelTrashHotkeyKeys.Content = "Enter new hotkey...";
@@ -249,9 +251,11 @@ namespace BGRotator
 
         private void BeginBind(Hotkey.KeyAction action)
         {
-            _hotkey = new Hotkey();
-            _hotkey.Action = action;
-            _hotkey.WinKey = Key.Escape;
+            _hotkey = new Hotkey
+            {
+                Action = action,
+                WinKey = Key.Escape
+            };
 
             KeyDown += Window_KeyDown;
         }
@@ -357,7 +361,7 @@ namespace BGRotator
             new PaletteHelper().SetLightDark(true);
         }
 
-        private void lightDarkToggleButton_Unchecked(object sender, RoutedEventArgs e)
+        private void LightDarkToggleButton_Unchecked(object sender, RoutedEventArgs e)
         {
             new PaletteHelper().SetLightDark(false);
         }
