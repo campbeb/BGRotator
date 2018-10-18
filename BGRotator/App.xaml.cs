@@ -39,6 +39,11 @@ namespace BGRotator
             }
         }
 
+        private void Open_Click(object sender, EventArgs e)
+        {
+            GetMainWindow.DisplayWindow();
+        }
+
         private void Exit_Click(object sender, EventArgs e)
         {
             Shutdown();

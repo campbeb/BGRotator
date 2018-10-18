@@ -12,6 +12,8 @@
             <tb:TaskbarIcon x:Key="TrayIcon" IconSource="BGRotator.ico" ToolTipText="BGRotator" LeftClickCommand="{StaticResource ShowCommand}">
                 <tb:TaskbarIcon.ContextMenu>
                     <ContextMenu>
+                        <MenuItem Header="Open" Click="Open_Click" />
+                        <Separator />
                         <MenuItem Header="Favorite" Click="Favorite_Click" />
                         <MenuItem Header="Trash" Click="Trash_Click" />
                         <Separator />
