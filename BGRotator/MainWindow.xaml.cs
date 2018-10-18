@@ -7,8 +7,6 @@ using System.IO;
 using System.Linq;
 using System.Windows.Input;
 using System.Windows.Interop;
-using System.Collections.Generic;
-using System.Windows.Controls;
 using System.Threading.Tasks;
 
 namespace BGRotator

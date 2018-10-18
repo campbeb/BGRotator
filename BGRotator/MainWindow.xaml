@@ -29,7 +29,7 @@
             HorizontalAlignment="Left"
             Margin="432,319,0,0"
             VerticalAlignment="Top"
-            Click="buttonOK_Click"
+            Click="ButtonOK_Click"
             Content="OK"
             IsDefault="True"
             TabIndex="17"/>
@@ -38,7 +38,7 @@
             HorizontalAlignment="Left"
             Margin="315,319,0,0"
             VerticalAlignment="Top"
-            Click="buttonCancel_Click"
+            Click="ButtonCancel_Click"
             Content="Cancel"
             IsCancel="True"
             TabIndex="16"/>
@@ -75,7 +75,7 @@
             HorizontalAlignment="Left"
             Margin="449,36,0,0"
             VerticalAlignment="Top"
-            Click="buttonBrowseWallpaperDir_Click"
+            Click="ButtonBrowseWallpaperDir_Click"
             Content="Browse..."
             TabIndex="3"/>
         <Label
@@ -138,7 +138,7 @@
             HorizontalAlignment="Left"
             Margin="449,101,0,0"
             VerticalAlignment="Top"
-            Click="buttonBrowseFavoritesDir_Click"
+            Click="ButtonBrowseFavoritesDir_Click"
             Content="Browse..."
             TabIndex="6"/>
         <Label
@@ -153,7 +153,7 @@
             HorizontalAlignment="Left"
             Margin="449,156,0,0"
             VerticalAlignment="Top"
-            Click="buttonBrowseTrashDir_Click"
+            Click="ButtonBrowseTrashDir_Click"
             Content="Browse..."
             TabIndex="9"/>
         <TextBox
@@ -200,7 +200,7 @@
             HorizontalAlignment="Left"
             Margin="74,222,0,0"
             VerticalAlignment="Top"
-            Click="buttonNextHotkey_Click"
+            Click="ButtonNextHotkey_Click"
             Content="Set"
             TabIndex="10"
             ToolTip="Click to set hotkey for Next Wallpaper"/>
@@ -209,7 +209,7 @@
             HorizontalAlignment="Left"
             Margin="74,255,0,0"
             VerticalAlignment="Top"
-            Click="buttonFavoriteHotkey_Click"
+            Click="ButtonFavoriteHotkey_Click"
             Content="Set"
             TabIndex="11"
             ToolTip="Click to set hotkey for Favorite Wallpaper"/>
@@ -218,7 +218,7 @@
             HorizontalAlignment="Left"
             Margin="74,288,0,0"
             VerticalAlignment="Top"
-            Click="buttonTrashHotkey_Click"
+            Click="ButtonTrashHotkey_Click"
             Content="Set"
             TabIndex="12"
             ToolTip="Click to set hotkey for Trash Wallpaper"/>
