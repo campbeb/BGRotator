@@ -38,14 +38,5 @@
     <Setting Name="settingsUpgradeRequired" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="useDarkBackground" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="primaryColor" Type="System.String" Scope="User">
-      <Value Profile="(Default)">grey</Value>
-    </Setting>
-    <Setting Name="accentColor" Type="System.String" Scope="User">
-      <Value Profile="(Default)">deeporange</Value>
-    </Setting>
   </Settings>
 </SettingsFile>

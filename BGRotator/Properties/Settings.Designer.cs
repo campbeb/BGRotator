@@ -166,41 +166,5 @@ namespace BGRotator.Properties {
                 this["settingsUpgradeRequired"] = value;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool useDarkBackground {
-            get {
-                return ((bool)(this["useDarkBackground"]));
-            }
-            set {
-                this["useDarkBackground"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("grey")]
-        public string primaryColor {
-            get {
-                return ((string)(this["primaryColor"]));
-            }
-            set {
-                this["primaryColor"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("deeporange")]
-        public string accentColor {
-            get {
-                return ((string)(this["accentColor"]));
-            }
-            set {
-                this["accentColor"] = value;
-            }
-        }
     }
 }

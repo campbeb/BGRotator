@@ -7,8 +7,6 @@ using System.IO;
 using System.Linq;
 using System.Windows.Input;
 using System.Windows.Interop;
-using MaterialDesignThemes.Wpf;
-using MaterialDesignColors;
 using System.Collections.Generic;
 using System.Windows.Controls;
 using System.Threading.Tasks;
@@ -27,9 +25,6 @@ namespace BGRotator
         private Hotkey favoriteHotkey;
         private Hotkey trashHotkey;
 
-        public IEnumerable<Swatch> PrimaryColorSwatches { get; }
-        public IEnumerable<Swatch> AccentColorSwatches { get; }
-
         public enum KeyChanging : byte
         {
             Next,
@@ -42,20 +37,6 @@ namespace BGRotator
         public MainWindow()
         {
             InitializeComponent();
-            this.DataContext = this;
-
-            // Populate list of colors
-            PrimaryColorSwatches = new SwatchesProvider().Swatches.OrderBy(s => s.Name);
-            AccentColorSwatches = new SwatchesProvider().Swatches.Where(b => b.IsAccented == true).OrderBy(s => s.Name);
-
-            // Use name of color from settings to find user's choice
-            IEnumerable<Swatch> primarySwatches = PrimaryColorSwatches.Where(x => x.Name == Properties.Settings.Default.primaryColor);
-            IEnumerable<Swatch> accentSwatches = AccentColorSwatches.Where(x => x.Name == Properties.Settings.Default.accentColor);
-            // Set color; Should only be a single item (colors are unique), so take the first one
-            new PaletteHelper().ReplacePrimaryColor(primarySwatches.First());
-            new PaletteHelper().ReplacePrimaryColor(accentSwatches.First());
-
-            new PaletteHelper().SetLightDark(Properties.Settings.Default.useDarkBackground);
 
             nextHotkey = Hotkey.Deserialize(Properties.Settings.Default.nextHotkey);
             favoriteHotkey = Hotkey.Deserialize(Properties.Settings.Default.favoriteHotkey);
@@ -369,25 +350,15 @@ namespace BGRotator
             e.Handled = true;
         }
 
-        private void PrimaryColorComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Window_Activated(object sender, EventArgs e)
         {
-            new PaletteHelper().ReplacePrimaryColor((Swatch)primaryColorComboBox.SelectedItem);
+            
         }
 
-        private void AccentColorComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            new PaletteHelper().ReplaceAccentColor((Swatch)accentColorComboBox.SelectedItem);
         }
 
-        private void LightDarkToggleButton_Checked(object sender, RoutedEventArgs e)
-        {
-            new PaletteHelper().SetLightDark(true);
-        }
-
-        private void LightDarkToggleButton_Unchecked(object sender, RoutedEventArgs e)
-        {
-            new PaletteHelper().SetLightDark(false);
-        }
     }
 
     public sealed class Wallpaper

@@ -7,15 +7,6 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepOrange.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Amber.xaml" />
-
-            </ResourceDictionary.MergedDictionaries>
-            
             <command:ActivateCommand x:Key="ShowCommand" />
 
             <tb:TaskbarIcon x:Key="TrayIcon" IconSource="BGRotator.ico" ToolTipText="BGRotator" LeftClickCommand="{StaticResource ShowCommand}">
