@@ -204,13 +204,16 @@ namespace BGRotator
 
         public void FavoriteWallpaper()
         {
+            if (currentWallpaper == null)
+                return;
+
             if (!Directory.Exists(Properties.Settings.Default.favoritesDir))
             {
                 MessageBox.Show("Directory for Favorites cannot be found:\n"+ Properties.Settings.Default.favoritesDir,
                     "BGRotator: Directory not found", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            
+
             String newfile = Path.Combine(Properties.Settings.Default.favoritesDir, Path.GetFileName(currentWallpaper));
 
             if (Properties.Settings.Default.moveOrCopyOnFavorite == 0) // Move
@@ -224,6 +227,9 @@ namespace BGRotator
 
         public void TrashWallpaper()
         {
+            if (currentWallpaper == null)
+                return;
+
             if (!Directory.Exists(Properties.Settings.Default.trashDir))
             {
                 MessageBox.Show("Directory for Trash cannot be found:\n" + Properties.Settings.Default.trashDir,
