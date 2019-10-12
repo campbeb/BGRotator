@@ -81,13 +81,13 @@
         <Label
             x:Name="labelRotate"
             HorizontalAlignment="Left"
-            Margin="272,271,0,0"
+            Margin="272,279,0,0"
             VerticalAlignment="Top"
             Content="Change wallpaper every"/>
         <xctk:IntegerUpDown
             x:Name="updownRotate" Width="62"
             HorizontalAlignment="Left"
-            Margin="411,274,0,0"
+            Margin="411,282,0,0"
             VerticalAlignment="Top"
             FormatString="N0"
             Increment="1"
@@ -102,7 +102,7 @@
         <Label
             x:Name="labelMinutes"
             HorizontalAlignment="Left"
-            Margin="476,272,0,0"
+            Margin="476,280,0,0"
             VerticalAlignment="Top"
             Content="minutes"/>
         <Label
@@ -249,7 +249,7 @@
         <CheckBox
             x:Name="checkBoxNextOnFavorite"
             HorizontalAlignment="Left"
-            Margin="294,210,0,0"
+            Margin="294,203,0,0"
             VerticalAlignment="Top"
             Content="Change wallpaper after Favorite"
             IsChecked="{Binding nextOnFavorite, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
@@ -257,7 +257,7 @@
         <CheckBox
             x:Name="checkBoxNextOnTrash"
             HorizontalAlignment="Left"
-            Margin="294,239,0,0"
+            Margin="294,226,0,0"
             VerticalAlignment="Top"
             Content="Change wallpaper after Trash"
             IsChecked="{Binding nextOnTrash, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
@@ -282,5 +282,13 @@
             <ComboBoxItem Content="Move"/>
             <ComboBoxItem Content="Copy"/>
         </ComboBox>
+        <CheckBox
+            x:Name="checkBoxCacheWallpaperList"
+            HorizontalAlignment="Left"
+            Margin="294,255,0,0"
+            VerticalAlignment="Top"
+            Content="Cache wallpaper list"
+            IsChecked="{Binding cacheWallpaperList, Mode=TwoWay, Source={x:Static Properties:Settings.Default}}"
+            TabIndex="14" ToolTip="If not cached, wallpaper directory is sccanned on every change"/>
     </Grid>
 </Window>

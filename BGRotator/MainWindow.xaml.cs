@@ -8,6 +8,7 @@ using System.Linq;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace BGRotator
 {
@@ -18,6 +19,7 @@ namespace BGRotator
     {
         private System.Windows.Threading.DispatcherTimer dispatcherTimer = null;
         private static Random rand;
+        private List<string> wallpaperList;
         private String currentWallpaper;
         private Hotkey nextHotkey;
         private Hotkey favoriteHotkey;
@@ -78,28 +80,43 @@ namespace BGRotator
                 return;
             }
 
-            Task<string> task = GetNextWallpaper();
-            currentWallpaper = await task;
+            // Check if we need to reload the list of wallpapers
+            if (!Properties.Settings.Default.cacheWallpaperList || wallpaperList == null || wallpaperList.Count == 0)
+            {
+                Task<List<string>> task = GetWallpaperList();
+                wallpaperList = await task;
+            }
 
-            Wallpaper.Set(currentWallpaper, Wallpaper.Style.Stretched);
+            if (wallpaperList.Count == 0)
+            {
+                MessageBox.Show("No valid image files found in:" + Properties.Settings.Default.wallpaperDir,
+                    "BGRotator: No images found", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            currentWallpaper = wallpaperList[rand.Next(wallpaperList.Count)];
+
+            if (Wallpaper.Set(currentWallpaper, Wallpaper.Style.Stretched) == 1460)
+            {
+                // 1460 seems to be error condition
+                wallpaperList.Remove(currentWallpaper);
+            }
         }
 
-        public static async Task<string> GetNextWallpaper()
+        public static async Task<List<string>> GetWallpaperList()
         {
-            string wallpaper = String.Empty;
+            var files = new List<string>(0);
 
             await Task.Run(() =>
             {
-                var files = Directory.GetFiles(Properties.Settings.Default.wallpaperDir, "*.*").Where(s => s.EndsWith(".jpg", StringComparison.OrdinalIgnoreCase) ||
+                files = Directory.GetFiles(Properties.Settings.Default.wallpaperDir, "*.*").Where(s => s.EndsWith(".jpg", StringComparison.OrdinalIgnoreCase) ||
                     s.EndsWith(".jpeg", StringComparison.OrdinalIgnoreCase) ||
                     s.EndsWith(".png", StringComparison.OrdinalIgnoreCase) ||
                     s.EndsWith(".gif", StringComparison.OrdinalIgnoreCase) ||
                     s.EndsWith(".bmp", StringComparison.OrdinalIgnoreCase)).ToList();
-
-                wallpaper = files[rand.Next(files.Count)];
             });
 
-            return wallpaper;
+            return files;
         }
 
         private void SaveSettings()
@@ -196,9 +213,14 @@ namespace BGRotator
             String newfile = Path.Combine(Properties.Settings.Default.favoritesDir, Path.GetFileName(currentWallpaper));
 
             if (Properties.Settings.Default.moveOrCopyOnFavorite == 0) // Move
+            {
                 File.Move(currentWallpaper, newfile);
+                wallpaperList.Remove(currentWallpaper);
+            }
             else
+            {
                 File.Copy(currentWallpaper, newfile, true);
+            }
 
             if (Properties.Settings.Default.nextOnFavorite)
                 NextWallpaper();
@@ -219,9 +241,14 @@ namespace BGRotator
             String newfile = Path.Combine(Properties.Settings.Default.trashDir, Path.GetFileName(currentWallpaper));
 
             if (Properties.Settings.Default.moveOrCopyOnTrash == 0) // Move
+            {
                 File.Move(currentWallpaper, newfile);
+                wallpaperList.Remove(currentWallpaper);
+            }
             else
+            {
                 File.Copy(currentWallpaper, newfile);
+            }
 
             if (Properties.Settings.Default.nextOnTrash)
                 NextWallpaper();
@@ -367,8 +394,10 @@ namespace BGRotator
         const int SPIF_UPDATEINIFILE = 0x01;
         const int SPIF_SENDWININICHANGE = 0x02;
 
-        [DllImport("user32.dll", CharSet = System.Runtime.InteropServices.CharSet.Auto)]
+        [DllImport("user32.dll", CharSet = System.Runtime.InteropServices.CharSet.Auto, SetLastError = true)]
         static extern int SystemParametersInfo(int uAction, int uParam, string lpvParam, int fuWinIni);
+        [DllImport("kernel32.dll")]
+        static extern uint GetLastError();
 
         public enum Style : int
         {
@@ -377,7 +406,7 @@ namespace BGRotator
             Stretched
         }
 
-        public static void Set(String filePath, Style style)
+        public static int Set(String filePath, Style style)
         {
             RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Control Panel\Desktop", true);
             if (style == Style.Stretched)
@@ -396,10 +425,14 @@ namespace BGRotator
                 key.SetValue(@"TileWallpaper", 1.ToString());
             }
 
+            // seems to always return 1
             SystemParametersInfo(SPI_SETDESKWALLPAPER,
                 0,
                 filePath,
                 SPIF_UPDATEINIFILE | SPIF_SENDWININICHANGE);
+
+            // seems to be 0 or 1460 (timeout)
+            return Marshal.GetLastWin32Error();
         }
     }
 }
